@@ -1,85 +1,27 @@
-# Grid Clash
+# React Examples Hub
 
-Grid Clash is a modern React take on tic-tac-toe. Play hot-seat matches or flip into solo mode where you control X and the CPU plays O with a quick heuristic engine.
+This repository groups several standalone React playgrounds. Each project retains its own `package.json`, build scripts, and dependencies so you can explore or reuse them independently.
 
-## Highlights
+## Repository Layout
 
-- **Solo or Local Play** – Toggle between a live opponent and an AI that blocks, wins, and prioritizes optimal moves.
-- **Score Tracking** – Persistent in-session scoreboard with quick “Next Round” and “Reset Scores” controls.
-- **Accessible Board** – Grid uses ARIA roles, keyboard navigation, and live status messaging.
-- **Stylized UI** – Responsive card layout with animated buttons and winning-line highlights.
+- `projects/grid-clash` – A modernized tic-tac-toe experience with solo CPU mode, scoreboard, and polished UI.
 
-## Getting Started
+> Every additional experiment should live inside `projects/<project-name>` to keep the root clean.
 
-```sh
+## Working on a Project
+
+```bash
+cd projects/grid-clash
 npm install
 npm start
 ```
 
-Visit `http://localhost:3000` to play. Run tests with `npm test -- --watchAll=false`.
+Each project exposes the usual Create React App scripts (`start`, `test`, `build`). Run commands from within the project directory to avoid cross-project dependency conflicts.
 
-## Gameplay Guide
+## Adding a New Project
 
-- Click or focus + Enter/Space to claim squares.
-- In solo mode you always play X; the CPU responds after a short delay.
-- Wins add to the respective score bucket; use **Next Round** to clear the board or **Reset Scores** to wipe totals.
+1. Create a directory under `projects/` and scaffold your React app there (`npx create-react-app projects/new-app` or similar).
+2. Ensure its dependencies are installed locally (`cd projects/new-app && npm install`).
+3. Document the app in its own `README.md` and add a short entry to the section above.
 
-## Flow Chart
-
-```
-[Start App component]
-      |
-      v
-[Initialize state: board, isXNext, scores, mode]
-      |
-      v
-[Derive status: winner, draw, CPU turn, labels]
-      |
-      v
-+-------------------------------+
-| On cell click (handleSquareClick) |
-+-------------------------------+
-      |
-      v
-[Cell empty & no winner & not CPU turn?]
-      | yes
-      v
-[Place X/O → check winner → update scores → flip turn]
-      |
-      v
-[Render board + status + scores + controls]
-
-Mode toggle buttons ----> [handleModeChange → reset board & turn]
-
-“Next Round” button ----> [resetBoard → empty board + X starts]
-
-“Reset Scores” button -> [resetEverything → empty board + scores zeroed]
-
-CPU turn? (solo mode & O to move)
-      |
-     yes
-      |
-      v
-[useEffect delay 500ms]
-      |
-      v
-[pickCpuMove → place O → check winner → update scores]
-      |
-      v
-[Set isXNext true]
-      |
-      v
-[Repeat render updates until winner or draw]
-```
-
-## Project Scripts
-
-- `npm start` – Launch dev server with hot reload.
-- `npm test` – Run the Jest test suite once or in watch mode.
-- `npm run build` – Produce an optimized production bundle.
-
-## Tech Stack
-
-- React 18 + hooks for state and effects.
-- `react-scripts` (Create React App) build pipeline.
-- CSS modules for layout and motion.
+This structure keeps every demo isolated while sharing a single Git repository. Let me know when you’re ready to add another project or automate the scaffold.
