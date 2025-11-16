@@ -1,0 +1,240 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.4;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1d4ed8, #0f172a 55%);
+  color: #f8fafc;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.game-card {
+  width: min(480px, 100%);
+  background: rgba(15, 23, 42, 0.92);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 70px rgba(2, 6, 23, 0.6);
+}
+
+.game-card h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 2.7rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin: 0.5rem 0 1.5rem;
+  color: #c7d2fe;
+  font-size: 0.95rem;
+}
+
+.mode-toggle {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.mode-option {
+  border-radius: 18px;
+  padding: 0.85rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.5);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  transition: border-color 0.12s ease, transform 0.12s ease, background 0.12s ease;
+}
+
+.mode-option:hover,
+.mode-option:focus-visible {
+  outline: none;
+  border-color: rgba(248, 250, 252, 0.6);
+  transform: translateY(-2px);
+}
+
+.mode-option.active {
+  border-color: rgba(248, 250, 252, 0.9);
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.4);
+}
+
+.mode-title {
+  font-weight: 600;
+}
+
+.mode-description {
+  font-size: 0.82rem;
+  color: #cbd5f5;
+}
+
+.status {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  background: rgba(30, 64, 175, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  text-align: center;
+}
+
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.score {
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.score strong {
+  font-size: 2rem;
+}
+
+.score .label {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: #cbd5f5;
+}
+
+.player-x {
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.player-o {
+  background: rgba(236, 72, 153, 0.15);
+}
+
+.board {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  font-size: clamp(2.3rem, 12vw, 3.5rem);
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.4);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.cell:hover,
+.cell:focus-visible {
+  outline: none;
+  border-color: rgba(96, 165, 250, 0.8);
+  transform: translateY(-2px);
+}
+
+.cell.filled {
+  cursor: not-allowed;
+}
+
+.cell.winning {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(249, 115, 22, 0.8));
+  border-color: transparent;
+  color: #0f172a;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  flex: 1;
+  min-width: 140px;
+  border-radius: 14px;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.controls button:hover,
+.controls button:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.controls .primary {
+  background: #38bdf8;
+  color: #0b1120;
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+}
+
+.controls .ghost {
+  background: transparent;
+  border: 1px solid rgba(254, 226, 226, 0.4);
+  color: #fee2e2;
+}
+
+.tips {
+  margin-top: 1.5rem;
+  padding-left: 1.25rem;
+  color: #cbd5f5;
+  font-size: 0.9rem;
+}
+
+.tips li + li {
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 520px) {
+  .game-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .mode-toggle {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls button {
+    width: 100%;
+  }
+}
